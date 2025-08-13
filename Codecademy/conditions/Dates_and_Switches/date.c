@@ -1,11 +1,21 @@
 #include <stdio.h>
 
+/*
+Program to convert a date from mm/dd/yyyy to 'Month DaySuffix, Year.' format
+*/
 int main(void)
 {
     int month, day, year;
 
     printf("Enter date (mm/dd/yyyy): ");
     scanf("%d/%d/%d", &month, &day, &year);
+
+    // Validate month
+    if (month < 1 || month > 12)
+    {
+        printf("Invalid month\n");
+        return 1;
+    }
 
     // Print month name
     switch (month)
@@ -22,12 +32,16 @@ int main(void)
         case 10: printf("October ");   break;
         case 11: printf("November ");  break;
         case 12: printf("December ");  break;
-        default:
-            printf("Invalid month\n");
-            return 1;
+    }
+    
+    // Validate day
+    if (day < 1 || day > 31)
+    {
+        printf("Invalid day\n");
+        return 1;
     }
 
-    // Day switch for suffix
+    // Determine ordinal suffix for the day
     switch (day)
     {
         case 1: case 21: case 31:
@@ -44,6 +58,8 @@ int main(void)
             break;
     }
 
+    // Print year
     printf("%d.\n", year);
+
     return 0;
 }
